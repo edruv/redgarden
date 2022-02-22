@@ -1,0 +1,250 @@
+.line-white{
+  height: .2em;
+  background: white;
+}
+#menuModal .modal-body a{
+  color: #000;
+  font-size: 2em;
+}
+#menuModal .modal-body a:hover{
+  border-bottom: .14em white solid;
+}
+#menuModal .modal-footer{
+  border-top: 1px solid #fff;
+}
+#wozial{
+  font-size: .75em;
+  border-top: 1px #f1f1f1 doted;
+}
+
+/* redgarden */
+
+		.bg-rg {
+			background-color: #006532;
+		}
+
+		.carousel-alert {
+			/* height: 5em; */
+			color: #fff;
+			font-size: 1.2em;
+		}
+
+		#menuModal .modal-content{
+			background-image: url('/img/design/menu_bg.png');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+		}
+
+		#carousel-alerts .carousel-caption {
+			color: #000;
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
+/* El separador con la flor en el centro */
+.sep {
+  display: flex;
+  flex-direction: row;
+
+}
+.sep:before, .sep:after{
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid #ae3d52;
+  margin: auto;
+
+}
+.sep:before {
+  margin-right: 20px;
+  margin-left: 10em;
+
+}
+.sep:after {
+  margin-left: 20px;
+  margin-right: 10em;
+}
+
+
+
+/* dr rocio */
+
+* {box-sizing:border-box}
+
+
+.fondotr{
+  background-image: url(/recursos/images/Contacto_03.png);
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+
+
+.fondotl{
+  background-image: url(/recursos/images/mercaBella_22.png);
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+
+
+
+.fondoa{
+background-color: #006532;
+
+}
+
+.ale{
+font-family: 'Alegreya Sans', sans-serif;
+}
+
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.category {
+  overflow: hidden;
+  position: relative;
+
+}
+
+.container {
+  margin-top: 50px;
+  margin-bottom: 50px
+}
+
+a,
+.btn {
+  transition: all 0.3s ease-out 0s
+}
+
+a {
+  color: #333;
+  text-decoration: none !important
+}
+
+h4 {
+  margin-bottom: 0px !important
+}
+
+.mb-10 {
+  margin-bottom: 10px
+}
+
+.htcatthumb a img {
+  width: 100%
+}
+
+p + img,
+img:last-child {
+  margin-bottom: 0
+}
+
+.frhoverinfo {
+  position: absolute;
+  right: 20px;
+  top: 20px
+}
+
+.productaction {
+  display: flex;
+  justify-content: center;
+  flex-flow: column
+}
+
+.ml-text {
+  margin-left: -44px
+}
+
+
+
+.productaction li:nth-child(1) {
+  opacity: 0;
+  transition: opacity 300ms linear 0s
+}
+
+.productaction li:nth-child(2) {
+  opacity: 0;
+  transition: opacity 300ms linear 0s
+}
+
+.productaction li:nth-child(3) {
+  opacity: 0;
+  transition: opacity 300ms linear 0s
+}
+
+.productaction li {
+  margin: 0;
+  margin-bottom: 2px
+}
+
+.productaction li a {
+  background: #fefefe none repeat scroll 0 0;
+  display: inline-block;
+  height: 50px;
+  line-height: 60px;
+  text-align: center;
+  transition: all 0.4s ease 0s;
+  width: 50px
+}
+
+.productaction li a i {
+  color: #673AB7;
+  font-size: 18px;
+  transition: all 0.4s ease 0s
+}
+
+.category:hover .productaction li:nth-child(1) {
+  -webkit-animation: 300ms ease-in-out 0s normal none 1 running fadeInRight;
+  animation: 300ms ease-in-out 0s normal none 1 running fadeInRight;
+  opacity: 1;
+  transition: opacity 300ms linear 0s
+}
+
+.category:hover .productaction li:nth-child(2) {
+  -webkit-animation: 500ms ease-in-out 0s normal none 1 running fadeInRight;
+  animation: 500ms ease-in-out 0s normal none 1 running fadeInRight;
+  opacity: 1;
+  transition: opacity 500ms linear 0s
+}
+
+.category:hover .productaction li:nth-child(3) {
+  -webkit-animation: 500ms ease-in-out 0s normal none 1 running fadeInRight;
+  animation: 500ms ease-in-out 0s normal none 1 running fadeInRight;
+  opacity: 1;
+  transition: opacity 500ms linear 0s
+}
+
+/*  Aquí se le mueve al lugar de donde sale la animación*/
+.category:hover .frproductinner.innerposition {
+  bottom: 7.2em;
+  opacity: 75%;
+
+}
+
+.frproductinner.innerposition {
+  background: #fff none repeat scroll 0 0;
+  bottom: -20px;
+  left: 0;
+  opacity: 0;
+  padding: 30px 20px;
+  position: absolute;
+  text-align: left;
+  transition: all 0.4s ease 0s;
+  width: 100%
+}
+
+.frproductinner h4 a {
+  font-size: 17px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s
+}
+
+.innerposition .frproprize {
+  float: left;
+  justify-content: flex-start
+}
