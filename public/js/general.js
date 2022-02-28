@@ -77,15 +77,56 @@ $(document).ready(function() {
 		});
 	});
 
+	// $('.addtocart').click(function(e) {
+	//
+	// 	var tcsrf = $('meta[name="csrf-token"]').attr('content');
+	// 	var key = $(this).attr('data-key');
+	// 	var cant = $('#cantidad').val();
+	// 	var carro = $('.num-bolsa').data('cart');
+	//
+	// 	$.ajax({
+	// 		// url: '/rodarte/cart/addcart',
+	// 		url: '/cart/addcart',
+	// 		type: 'POST',
+	// 		data: {
+	// 			"_method": 'post',
+	// 			"_token": tcsrf,
+	// 			'key': key,
+	// 			'cant': cant,
+	// 		}
+	// 	})
+	// 	.done(function(msg) {
+	// 		if (msg.resp) {
+	// 			toastr["success"]("Se agrego al carrito");
+	// 			$("#cotizacion-fixed a").show();
+	// 			carro = carro + 1 ;
+	// 			// $('.num-bolsa').html(carro);
+	// 			$('.alert-cart').removeClass('invisible');
+	//
+	// 			// console.log(msg);
+	// 		} else {
+	// 			toastr["error"]("Error al agregar del carrito");
+	// 		}
+	// 	})
+	// 	.fail(function(msg) {
+	// 		console.log("error:");
+	// 		console.log(msg);
+	// 	});
+	//
+	// 	// console.log(key);
+	// 	// console.log(color);
+	// 	console.log(cant);
+	// 	// console.log(vers);
+	// });
+
 	$('.addtocart').click(function(e) {
 
 		var tcsrf = $('meta[name="csrf-token"]').attr('content');
-		var key = $(this).attr('data-key');
+		var key = $('#size').val();
 		var cant = $('#cantidad').val();
 		var carro = $('.num-bolsa').data('cart');
 
 		$.ajax({
-			// url: '/rodarte/cart/addcart',
 			url: '/cart/addcart',
 			type: 'POST',
 			data: {
@@ -105,6 +146,7 @@ $(document).ready(function() {
 
 				// console.log(msg);
 			} else {
+				console.log(msg);
 				toastr["error"]("Error al agregar del carrito");
 			}
 		})
@@ -113,10 +155,7 @@ $(document).ready(function() {
 			console.log(msg);
 		});
 
-		// console.log(key);
-		// console.log(color);
 		console.log(cant);
-		// console.log(vers);
 	});
 
 	$("body").on( "click",".fastcart", function(e) {

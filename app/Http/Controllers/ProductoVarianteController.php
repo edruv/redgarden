@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Producto;
 use App\ProductoVariante;
+use App\ProductoSize;
+use App\ProductoPresentacion;
 use App\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -78,7 +80,8 @@ class ProductoVarianteController extends Controller
 			$var = ProductoVariante::find($productoVariante);
 			$product = Producto::find($var->producto);
 			$product->categoria = Categoria::find($product->categoria);
-			$product->marca = Marca::find($product->marca);
+			$size = ProductoSize::find($var->size);
+			$presentacion = ProductoPresentacion::find($var->presentacion);
 
 			switch ($var->tipo_envio) {
 				case 'envelope':
@@ -90,12 +93,12 @@ class ProductoVarianteController extends Controller
 				case 'full_truck_load':
 					$var->tipo_envio = 'Camión';
 				break;
-				default:
+				case 'box':
 					$var->tipo_envio = 'Paquete';
 				break;
 			}
 
-			return view('admin.variantes.show',compact('var','product'));
+			return view('admin.variantes.show',compact('var','product','size','presentacion'));
     }
 
     /**
@@ -107,13 +110,14 @@ class ProductoVarianteController extends Controller
     public function edit($productoVariante) {
 
 			$variante = ProductoVariante::find($productoVariante);
-
+			$size = ProductoSize::all();
+			$presentacion = ProductoPresentacion::all();
 			if (empty($variante)) {
 				\Toastr::error('Error, no se encontro el producto');
 				return redirect()->back();
 			}
 
-			return view('admin.variantes.edit',compact('variante'));
+			return view('admin.variantes.edit',compact('variante','size','presentacion'));
     }
 
     /**
@@ -126,10 +130,15 @@ class ProductoVarianteController extends Controller
     public function update(Request $request, $productoVariante) {
 			$variant = ProductoVariante::find($productoVariante);
 			$validate = Validator::make($request->all(), [
-				'sku' => 'unique:producto_variantes,sku,'.$variant->id.',id',
-				'modelo' => 'required',
 				'precio' => 'required',
-			], [], []);
+				'tipo_envio' => 'required',
+				'peso' => 'required',
+				'largo' => 'required',
+				'ancho' => 'required',
+				'alto' => 'required',
+			], [], [
+				'tipo_envio' => 'tipo de envio',
+			]);
 
 			if ($validate->fails()) {
 				\Toastr::error('Error, se requieren mas datos');
@@ -141,22 +150,21 @@ class ProductoVarianteController extends Controller
 				return redirect()->back()->withErrors($validate);
 			}
 
-			$variant->producto = $request->producto;
 			$variant->size = $request->size;
 			$variant->presentacion = $request->presentacion;
 			$variant->stock = $request->stock;
 			$variant->precio = $request->precio;
 			$variant->descuento = $request->descuento;
-			// $variant->tipo_envio = $request->tipo_envio;
-			// $variant->peso = $request->peso;
-			// $variant->largo = $request->largo;
-			// $variant->ancho = $request->ancho;
-			// $variant->alto = $request->alto;
+			$variant->tipo_envio = $request->tipo_envio;
+			$variant->peso = $request->peso;
+			$variant->largo = $request->largo;
+			$variant->ancho = $request->ancho;
+			$variant->alto = $request->alto;
 
 			$variant->save();
 
 			\Toastr::success('Guardado');
-			return redirect()->route('productos.version.show', $variant->id);
+			return redirect()->route('productos.variantes.show', $variant->id);
 
     }
 

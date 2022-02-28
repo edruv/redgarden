@@ -92,13 +92,13 @@ class PedidoController extends Controller
 			$pedido = new Pedido;
 
 			$pedido->uid = Str::uuid();
-			$pedido->domicilio = $domicilio;
+			$pedido->domicilio = $domicilio->id;
 			$pedido->cantidad = $cant;
 			// $pedido->envio = ($config->envio * $cant) + $config->envioglobal;
 			$pedido->envio = $request->envio_price;
 			$pedido->importe = $request->subtotal;
 			$iva = 0;
-			// $pedido->iva = ($request->subtotal*$config->iva)/100;
+			$pedido->iva = ($request->subtotal*$config->iva)/100;
 			$pedido->usuario = $user->id;
 			$pedido->data = $carrito;
 			$pedido->save();

@@ -24,7 +24,7 @@
 @section('content')
 	<div class="row mb-4 px-2">
 		<a href="{{ route('productos.show',$product->id) }}" class="col col-md-2 btn btn-sm grey darken-2 text-white mr-auto"><i class="fa fa-reply"></i> Regresar</a>
-		<a href="{{route('productos.version.edit', $var->id)}}" class="col col-md-2 btn btn-sm blue darken-2 text-white"><i class="fa fa-pen"></i> Editar</a>
+		<a href="{{route('productos.variantes.edit', $var->id)}}" class="col col-md-2 btn btn-sm blue darken-2 text-white"><i class="fa fa-pen"></i> Editar</a>
 	</div>
 	<div class="row">
 		<div class="col-12 col-lg-6 my-2">
@@ -32,10 +32,10 @@
 				<div class="card-body">
 					<div class="card-title text-center h5">Detalles Variante</div>
 					<div>
-						<span class="font-weight-bold">SKU:</span> <span>{{$var->sku}} </span>
+						<span class="font-weight-bold">Tamaño:</span> <span>{{$size->tamanio}} </span>
 					</div>
 					<div>
-						<span class="font-weight-bold">Modelo:</span> <span>{{$var->modelo}} </span>
+						<span class="font-weight-bold">Presentacion:</span> <span>{{$presentacion->tamanio}} </span>
 					</div>
 					<div class="row">
 						<div class="col-6">
@@ -44,10 +44,6 @@
 						<div class="col-6">
 							<span class="font-weight-bold">Descuento:</span> <span>{{$var->descuento}}%</span>
 						</div>
-					</div>
-					<div class="form-group">
-						<span class="font-weight-bold">Descripción:</span>
-						<div class="">{!! $var->descripcion !!}</div>
 					</div>
 				</div>
 			</div>
@@ -61,9 +57,6 @@
 					</div>
 					<div>
 						<span class="font-weight-bold">Categoria:</span> <span>{{$product->categoria->nombre}} </span>
-					</div>
-					<div>
-						<span class="font-weight-bold">Marca:</span> <span>{{$product->marca->titulo}} </span>
 					</div>
 					<div class="form-group">
 						<span class="font-weight-bold">Descripción:</span>
@@ -126,7 +119,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="{{ route('productos.version.store') }}" method="post">
+				<form action="{{ route('productos.variantes.store') }}" method="post">
 					@csrf
 					<input type="hidden" name="producto" value="{{ $product->id }}">
 					<div class="modal-body">

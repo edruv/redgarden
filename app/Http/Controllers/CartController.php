@@ -8,6 +8,8 @@ use App\Factura;
 use App\Producto;
 use App\ProductosPhoto;
 use App\ProductoVariante;
+use App\ProductoSize;
+use App\ProductoPresentacion;
 use App\Configuracion;
 use App\User;
 use Carbon\Carbon;
@@ -22,13 +24,17 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Darryldecode\Cart\Cart;
 use Darryldecode\Cart\CartCondition;
+use Session;
 
 class CartController extends Controller
 {
 	public $shipping;
+	private $enviar;
+
 	public function __construct(){
 		if (!session()->has('cart_id')) {
 			session(['cart_id' => rand(00000,99999)]);
+			$this->enviar = (Session::get('lang') == 'es' ) ? '' : '_en' ;
 		}
 	}
 		/**
@@ -57,9 +63,68 @@ class CartController extends Controller
 		 * @param  \Illuminate\Http\Request  $request
 		 * @return \Illuminate\Http\Response
 		 */
-		public function store(Request $request)
-		{
-				//
+		public function store(Request $request) {
+
+			if (!session()->has('cart_id')) {
+				session(['cart_id' => rand(00000,99999)]);
+			}
+			if (!session()->has('cart_alert')) {
+				session(['cart_alert' => '1' ]);
+			}
+
+			$producto = ProductoVariante::find($request->key);
+			$size = ProductoSize::find($producto->size);
+			$presentacion = ProductoPresentacion::find($producto->presentacion);
+			// $userId= (!Auth::check()) ? session('cart_id') : Auth::user()->id ;
+			$userId = session('cart_id');
+
+			$promo = (!empty($producto->descuento)) ? "-$producto->descuento%" : 0 ;
+			$cant = ($request->has('fastcart')) ? 1 : $request->cant ;
+			$prodMain = Producto::find($producto->producto);
+			// $promoCondition = new CartCondition(array(
+			// 	'name' => 'Descuento en producto',
+			// 	'type' => 'promo',
+			// 	'value' => "-$promo"
+			// ));
+			//
+			// $ivaCondition = new CartCondition(array(
+			// 	'name' => 'IVA',
+			// 	'type' => 'tax',
+			// 	'value' => "+$producto->iva"
+			// ));
+
+			\Cart::session($userId)->add(array(
+				'id' => $producto->id,
+				'name' => "$prodMain->nombre.$this->enviar",
+				'price' => $producto->precio,
+				'quantity' => $cant,
+				'attributes' => array(
+					'producto' => $prodMain,
+					'size' => $size,
+					'presentacion' => $presentacion,
+				),
+				// 'conditions' => [$promoCondition, $ivaCondition],
+				'associatedModel' => $producto
+			));
+			// for a specific user
+			// $cartTotalQuantity = \Cart::session($userId)->getTotalQuantity();
+			$cartTotal = \Cart::session($userId)->getTotal();
+			$cartgetSubTotal = \Cart::session($userId)->getSubTotal();
+
+			$resp = collect([
+				'resp' => true,
+				'msg' => 'Se agrego exitosamente',
+				// 'subtotal' => $cartgetSubTotal,
+				// 'total' => $cartTotal
+			]);
+
+			session(['cart-items' => \Cart::session($userId)->getTotalQuantity()]);
+
+			// return  \Cart::getContent()->toJson();
+			// return  $cartConditions;
+			// return  $producto;
+			return  $resp;
+			// return $cartgetSubTotal;
 		}
 
 		/**
@@ -127,9 +192,24 @@ class CartController extends Controller
 		 * @param  int  $id
 		 * @return \Illuminate\Http\Response
 		 */
-		public function update(Request $request, $id)
-		{
-				//
+		public function update(Request $request) {
+			$userId = session('cart_id');
+
+			\Cart::session($userId)->update($request->item, array(
+				'quantity' => array(
+					'relative' => false,
+					'value' => $request->cant
+			  ),
+			));
+
+			$resp = collect([
+				'resp' => true,
+				'msg' => 'Carrito actualizado'
+			]);
+
+			session(['cart-items' => \Cart::session($userId)->getTotalQuantity()]);
+
+			return response()->json($resp);
 		}
 
 		/**
@@ -141,72 +221,6 @@ class CartController extends Controller
 		public function destroy($id)
 		{
 				//
-		}
-
-
-		public function addcart(Request $request){
-
-			if (!session()->has('cart_id')) {
-				session(['cart_id' => rand(00000,99999)]);
-			}
-			if (!session()->has('cart_alert')) {
-				session(['cart_alert' => '1' ]);
-			}
-
-			$producto = ProductoVariante::find($request->key);
-
-			// $userId= (!Auth::check()) ? session('cart_id') : Auth::user()->id ;
-			$userId = session('cart_id');
-
-			$promo = (!empty($producto->descuento)) ? "-$producto->descuento%" : 0 ;
-			$cant = ($request->has('fastcart')) ? 1 : $request->cant ;
-			$imagen = ProductosPhoto::where('producto',$producto->producto)->orderBy('orden', 'asc')->get()->first();
-			$imagen = (!empty($imagen->image)) ? $imagen->image : null ;
-			$prodMain = Producto::find($producto->producto);
-			// $promoCondition = new CartCondition(array(
-			// 	'name' => 'Descuento en producto',
-			// 	'type' => 'promo',
-			// 	'value' => "-$promo"
-			// ));
-			//
-			// $ivaCondition = new CartCondition(array(
-			// 	'name' => 'IVA',
-			// 	'type' => 'tax',
-			// 	'value' => "+$producto->iva"
-			// ));
-
-			\Cart::session($userId)->add(array(
-				'id' => $producto->id,
-				'name' => "$producto->modelo",
-				'price' => $producto->precio,
-				'quantity' => $cant,
-				'attributes' => array(
-					'sku' => $producto->sku,
-					'image' => $imagen,
-					'producto' => $prodMain,
-				),
-				// 'conditions' => [$promoCondition, $ivaCondition],
-				'associatedModel' => $producto
-			));
-			// for a specific user
-			// $cartTotalQuantity = \Cart::session($userId)->getTotalQuantity();
-			$cartTotal = \Cart::session($userId)->getTotal();
-			$cartgetSubTotal = \Cart::session($userId)->getSubTotal();
-
-			$resp = collect([
-				'resp' => true,
-				'msg' => 'Se agrego exitosamente',
-				// 'subtotal' => $cartgetSubTotal,
-				// 'total' => $cartTotal
-			]);
-
-			session(['cart-items' => \Cart::session($userId)->getTotalQuantity()]);
-
-			// return  \Cart::getContent()->toJson();
-			// return  $cartConditions;
-			// return  $producto;
-			return  $resp;
-			// return $cartgetSubTotal;
 		}
 
 		public function emptycart(){
@@ -226,27 +240,6 @@ class CartController extends Controller
 			session(['cart-items' => 0]);
 
 			return redirect()->back();
-		}
-
-
-		public function updatecart(Request $request){
-			$userId = session('cart_id');
-
-			\Cart::session($userId)->update($request->item, array(
-				'quantity' => array(
-					'relative' => false,
-					'value' => $request->cant
-			  ),
-			));
-
-			$resp = collect([
-				'resp' => true,
-				'msg' => 'Carrito actualizado'
-			]);
-
-			session(['cart-items' => \Cart::session($userId)->getTotalQuantity()]);
-
-			return response()->json($resp);
 		}
 
 		public function removecart(Request $request){
@@ -344,7 +337,8 @@ class CartController extends Controller
 			$carriersArray;
 			$curl = curl_init();
 			curl_setopt_array($curl, array(
-				CURLOPT_URL => "https://queries.envia.com/available-carrier/MX/0/1",
+				// CURLOPT_URL => 'https://queries.envia.com/available-carrier/MX/0/1',
+				CURLOPT_URL => "https://queries-test.envia.com/available-carrier/MX/0/1",
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_ENCODING => "",
 				CURLOPT_MAXREDIRS => 10,
@@ -401,8 +395,8 @@ class CartController extends Controller
 			$package = session('shipItems');
 
 			$origin = array(
-				"name" => "Rodarte Mexico",
-				"company" => "Rodarte Mexico",
+				"name" => "Red Garden",
+				"company" => "Red Garden",
 				"email" => $config->envio_email,
 				"phone" => $config->envio_telefono,
 				"street" => $config->envio_calle,
@@ -446,7 +440,8 @@ class CartController extends Controller
 
 			$curl = curl_init();
 			curl_setopt_array($curl, array(
-				CURLOPT_URL => "https://api.envia.com/ship/rate/?name=string&company=string&email=string&carrier=string",
+				// CURLOPT_URL => "https://api.envia.com/ship/rate/?name=string&company=string&email=string&carrier=string",
+				CURLOPT_URL => "https://api-test.envia.com/ship/rate/?name=string&company=string&email=string&carrier=string",
 				// CURLOPT_URL => $urlBase . "/ship/rate/?name=string&company=string&email=string&carrier=string",
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_ENCODING => "",

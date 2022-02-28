@@ -114,7 +114,8 @@ class HomeController extends Controller
 
 		public function detalle($uuid){
 			$pedido = Pedido::where('uid',$uuid)->first();
-			$pedido->domicilio = json_decode($pedido->domicilio,true);
+			// $pedido->domicilio = json_decode($pedido->domicilio,true);
+			$pedido->domicilio = Domicilio::find($pedido->domicilio);
 			$pedido->usuario = User::find($pedido->usuario);
 			$detalle = PedidoDetalle::where('pedido',$pedido->id)->get();
 
@@ -128,6 +129,7 @@ class HomeController extends Controller
 			}
 
 			$pedido->envia_resp = json_decode($pedido->envia_resp,true);
+
 			return view('dashboard.compras.detalle',compact('pedido','detalle'));
 			// return $detalle;
 		}

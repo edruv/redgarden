@@ -49,12 +49,12 @@
 							{!! $product->{'descripcion'.$envar} !!}
 						</div>
 						<div class="mt-3">
-							<form action="">
+							{{-- <form action=""> --}}
 								<div class="row">
 									<div class="col-12 col-md">
 										{{-- <label class="form-label" for="size"> @if ($envar) STONE SIZE @else TAMAÑO DE PIEDRA @endif </label> --}}
 										<label class="form-label" for="size"> @if ($envar) STONE SIZE & PRESENTATION @else TAMAÑO DE PIEDRA & PRESENTACION @endif </label>
-										<select name="size" id="size" class="form-select btn btn-outline-dark">
+										<select name="size" id="size" class="form-select btn btn-outline-dark" required>
 											<option disabled selected>@if ($envar) Select an option @else Seleccionar @endif</option>
 												@foreach ($variantes as $var)
 													<option value="{{$var->id}}">{{$var->size->{'tamanio'.$envar} }} - {{$var->presentacion->{'tamanio'.$envar} }}</option>
@@ -71,11 +71,13 @@
 									</div> --}}
 									<div class="col-12 col-md">
 										<label class="form-label" for=""> @if ($envar) QUANTITY @else CANTIDAD @endif </label>
-										<input type="text" class="form-control btn btn-outline-dark">
+										<input type="number" name="cantidad" id="cantidad" class="form-control btn btn-outline-dark" max="">
 									</div>
-									<div class="col-12 text-center py-3"><button type="submit" class="btn btn-outline-light">@if ($envar) buy @else Comprar @endif </button></div>
+									<div class="col-12 text-center py-3">
+										<button class="btn btn-outline-light addtocart">@if ($envar) buy @else Comprar @endif </button>
+									</div>
 								</div>
-							</form>
+							{{-- </form> --}}
 						</div>
 					</div>
 				</div>
@@ -133,7 +135,41 @@
 			// });
 			$('#size').change(function(e) {
 				var sizeId = $(this).val();
-				console.log(sizeId);
+				var tcsrf = $('meta[name="csrf-token"]').attr('content');
+
+				$.ajax({
+					url: '/producto/det/var',
+					data: {
+						"_method": 'post',
+						"_token": tcsrf,
+						'variante': sizeId
+					}
+				})
+				.done(function(resp) {
+					if (resp != 401) {
+						let stock = resp.stock;
+						if (stock > 0 ) {
+							$('.addtocart').removeClass('disabled');
+							$('#cantidad').attr('max', stock);
+							$('#cantidad').val(1);
+						} else {
+							$('#cantidad').val(0);
+							$('.addtocart').addClass('disabled');
+						}
+					} else {
+						console.log(resp);
+						@if ($envar)
+						toastr["error"]("Error when consulting product ");
+						@else
+						toastr["error"]("Error al consultar producto");
+						@endif
+					}
+				})
+				.fail(function(resp) {
+					console.log("error");
+					console.log(resp);
+				});
+
 			});
 		});
 	</script>

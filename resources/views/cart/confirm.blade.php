@@ -35,14 +35,14 @@
 										<div class="card-title h5 text-center bg-verde-claro">
 											Domicilio de envio
 										</div>
-										<select name="domicilio" id="domicilio" class="custom-select text-capitalize">
+										<select name="domicilio" id="domicilio" class="form-select text-capitalize">
 											<option selected disabled>Selecciona Domicilio de envio</option>
 											@foreach ($domicilios as $dom)
 											<option value="{{$dom->id}}">{{ ucfirst($dom->alias) }} [<span class="">{{ ucfirst($dom->calle).' #'.ucfirst($dom->numext)}}</span>] </option>
 											@endforeach
 										</select>
 										<div class="my-2">
-											<button class="btn btn-info btn-sm w-100" id="addDom" data-toggle="modal" data-target="#addDomMod">Agregar Dirección</button>
+											<button type="button" class="btn btn-info btn-sm w-100" id="addDom" data-bs-toggle="modal" data-bs-target="#addDomMod"> Agregar Dirección </button>
 										</div>
 									</div>
 								</div>
@@ -161,97 +161,94 @@
 				<input type="hidden" id="envio_carrier" name="envio_carrier" value="">
 				<input type="hidden" id="envio_service" name="envio_service" value="">
 				<div class="col-12 mt-4 row">
-					<div class="col-4 text-center">
+					<div class="col-6 text-center">
 						<button type="submit" class="siguiente btn btn-warning uk-button-personal font-weight-bold paytype" value="deposito" style="">Depósito o transferencia</button>
 						<img class="d-block mt-3 mx-auto w-75 img-fluid " src="{{asset('img/design/pago-oxxo.jpg')}}">
 					</div>
-					<div class="col-4 text-center">
+					<div class="col-6 text-center">
 						<button type="submit" class="siguiente btn btn-warning uk-button-personal font-weight-bold paytype" value="paypal" style="">Pagar con PayPal</button>
 						<img class="d-block mt-3 mx-auto w-75 img-fluid " src="{{asset('img/design/pago-paypal.png')}}">
 					</div>
-					<div class="col-4 text-center">
+					{{-- <div class="col-4 text-center">
 						<button type="submit" class="siguiente btn btn-warning uk-button-personal font-weight-bold paytype" value="stripe" style="">Pagar con Stripe</button>
 						<img class="d-block mt-3 mx-auto w-75 img-fluid " src="{{asset('img/design/Stripe blurple.svg')}}">
-					</div>
+					</div> --}}
 				</div>
 			</form>
 		@endif
 	</div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="addDomMod" tabindex="-1" aria-labelledby="addDomModLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="addDomModLabel">Agregar dirección</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form id="formdom" method="post">
-					@csrf
-					<div class="modal-body text-center">
-						<div class="form-group">
-							<label for="alias">Alias/Nombre</label>
-							<input type="text" class="form-control" id="alias" name="alias" placeholder="Ej. Casa, Trabajo" required>
-						</div>
-						<div class="form-group">
-							<label for="address">Calle</label>
-							<input type="text" class="form-control" id="address" name="address" placeholder="Av.Lapizpazuli" required>
-						</div>
-						<div class="form-group row">
-							<div class="col">
-								<label for="number">Num. exterior</label>
-								<input type="text" class="form-control" id="number" name="number" required>
+	<!-- Modal -->
+	<div class="modal fade" id="addDomMod" tabindex="-1" aria-labelledby="addDomModLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="addDomModLabel">Agregar dirección</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="formdom" method="post">
+						@csrf
+						<div class="modal-body text-center">
+							<div class="form-group">
+								<label for="alias">Alias/Nombre</label>
+								<input type="text" class="form-control" id="alias" name="alias" placeholder="Ej. Casa, Trabajo" required>
 							</div>
-							<div class="col">
-								<label for="numint">Num. interior</label>
-								<input type="text" class="form-control" id="numint" name="numint">
+							<div class="form-group">
+								<label for="address">Calle</label>
+								<input type="text" class="form-control" id="address" name="address" placeholder="Av.Lapizpazuli" required>
 							</div>
-						</div>
-						<div class="form-group">
-							<label for="entrecalles">Entre Calles</label>
-							<input type="text" class="form-control" id="entrecalles" name="entrecalles" required>
-						</div>
-						<div class="form-group">
-							<label for="colonia">Colonia</label>
-							<input type="text" class="form-control" id="colonia" name="colonia" required>
-						</div>
-						<div class="form-group">
-							<label for="municipio">Municipio</label>
-							<input type="text" class="form-control" id="municipio" name="municipio" required>
-						</div>
-						<div class="form-group">
-							<label for="cp">CP</label>
-							<input type="text" class="form-control" id="cp" name="cp" required>
-						</div>
-						<div class="form-group">
-							<label for="estado">Estado</label>
-							<select class="custom-select" id="estado" name="estado" required>
-								<option selected isabled>Selecciona tu estado</option>
-								@foreach ($estados as $est)
+							<div class="form-group row">
+								<div class="col">
+									<label for="number">Num. exterior</label>
+									<input type="text" class="form-control" id="number" name="number" required>
+								</div>
+								<div class="col">
+									<label for="numint">Num. interior</label>
+									<input type="text" class="form-control" id="numint" name="numint">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="entrecalles">Entre Calles</label>
+								<input type="text" class="form-control" id="entrecalles" name="entrecalles" required>
+							</div>
+							<div class="form-group">
+								<label for="colonia">Colonia</label>
+								<input type="text" class="form-control" id="colonia" name="colonia" required>
+							</div>
+							<div class="form-group">
+								<label for="municipio">Municipio</label>
+								<input type="text" class="form-control" id="municipio" name="municipio" required>
+							</div>
+							<div class="form-group">
+								<label for="cp">CP</label>
+								<input type="text" class="form-control" id="cp" name="cp" required>
+							</div>
+							<div class="form-group">
+								<label for="estado">Estado</label>
+								<select class="form-select" id="estado" name="estado" required>
+									<option selected isabled>Selecciona tu estado</option>
+									@foreach ($estados as $est)
 									<option value="{{$est->code_2_digits}}">{{$est->name}}</option>
-								@endforeach
-							</select>
-						</div>
-						<div class="modal-footer">
-							<div class="col-12 row text-center">
-								<div class="col-6">
-									<button type="button" id="savedom" class="btn btn-primary">Guardar</button>
-								</div>
-								<div class="col-6">
-									<button type="button" id="closemod" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+									@endforeach
+								</select>
+							</div>
+							<div class="modal-footer">
+								<div class="col-12 row text-center">
+									<div class="col-6">
+										<button type="button" id="savedom" class="btn btn-primary">Guardar</button>
+									</div>
+									<div class="col-6">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+									</div>
 								</div>
 							</div>
 						</div>
-				</form>
+					</form>
+				</div>
 			</div>
-
 		</div>
 	</div>
-</div>
-
 @endsection
 @section('jsLibExtras2')
 @endsection

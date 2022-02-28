@@ -24,6 +24,12 @@ class CreateProductoVarianteTable extends Migration
 					$table->boolean('activo')->default(1);
 					$table->integer('orden')->default(666);
 
+					$table->string('tipo_envio')->nullable();
+					$table->string('peso')->nullable();
+					$table->string('largo')->nullable();
+					$table->string('ancho')->nullable();
+					$table->string('alto')->nullable();
+
 					$table->foreign('producto')->references('id')->on('productos')->onDelete('cascade');
 					$table->foreign('size')->references('id')->on('producto_sizes')->onDelete('cascade');
 					$table->foreign('presentacion')->references('id')->on('producto_presentacions')->onDelete('cascade');

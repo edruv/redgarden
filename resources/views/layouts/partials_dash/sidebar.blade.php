@@ -1,7 +1,7 @@
 <div class="sidebar-fixed position-fixed" style="z-index:2000;">
 
 	<a class="logo-wrapper waves-effect">
-		<img src="{{asset('img/design/logoFooter.png')}}" class="img-fluid" alt="">
+		<img src="{{asset('img/design/logo.png')}}" class="img-fluid" alt="logo.png">
 	</a>
 
 	<div class="list-group list-group-flush">

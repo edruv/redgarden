@@ -44,6 +44,16 @@ class CreateConfiguracionsTable extends Migration
     			$table->string('iva')->nullable();
     			$table->string('incremento')->nullable();
     			$table->text('mapa')->nullable();
+					$table->string('envia_key')->nullable();
+					$table->string('envio_telefono')->nullable();
+					$table->string('envio_email')->nullable();
+					$table->string('envio_calle')->nullable();
+					$table->string('envio_numero')->nullable();
+					$table->string('envio_colonia')->nullable();
+					$table->string('envio_ciudad')->nullable();
+					$table->string('envio_estado')->nullable();
+					$table->string('envio_estado_code')->nullable();
+					$table->string('envio_cp')->nullable();
           $table->timestamps();
         });
     }

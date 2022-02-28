@@ -18,11 +18,13 @@ class CreatePedidoDetallesTable extends Migration
             $table->integer('cantidad');
             $table->float('precio',9,2);
             $table->float('importe',9,2);
+            $table->float('total',9,2);
             $table->unsignedBigInteger('pedido');
             $table->foreign('pedido')->references('id')->on('pedidos')->onDelete('cascade');
             $table->unsignedBigInteger('producto');
             $table->foreign('producto')->references('id')->on('productos')->onDelete('cascade');
 						$table->unsignedBigInteger('color')->nullable();
+						$table->text('log');
             $table->timestamps();
         });
     }

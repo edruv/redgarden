@@ -102,7 +102,7 @@
 
 		<div class="col-md-8">
 			<div class="card">
-				<img src="{{asset('img/design/logoFooter.png')}}" class="card-img-top w-50 mx-auto mt-3" alt="logo.png">
+				<img src="{{asset('img/design/logo.png')}}" class="card-img-top w-50 mx-auto mt-3" alt="logo.png">
 				<div class="card-body">
 					<div class="card-title text-center h3 py-3">{{ __('Register') }}</div>
 					<form method="POST" action="{{ route('register') }}">

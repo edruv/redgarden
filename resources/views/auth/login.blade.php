@@ -100,8 +100,8 @@
 									</div>
 								</div>
 
-								<div class="form-group row mb-0">
-									<div class="">
+								<div class="form-group row mb-0 mt-3">
+									<div class="d-flex justify-content-between">
 										<button type="submit" class="btn btn-primary">
 											{{ __('Entrar') }}
 										</button>
@@ -121,7 +121,7 @@
 							</p>
 						</div>
 					</div>
-					<div class="col-md-5 d-flex align-items-center border-left bg-black">
+					<div class="col-md-5 d-flex align-items-center border-left">
 						<img class="img-fluid p-4" src="{{asset('img/design/logo.png')}}" alt="logo.png">
 					</div>
 				</div>

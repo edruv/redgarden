@@ -25,12 +25,6 @@ class CreateUsersTable extends Migration
 			$table->string('empresa')->nullable();
 			$table->string('avatar')->nullable();
 			$table->string('rfc')->nullable();
-			$table->tinyInteger('nivel')->default(0);
-			$table->integer('puntos')->nullable(0);
-			$table->string('distr_code')->unique();
-			$table->string('referido_by')->nullable();
-			$table->boolean('distribuidor')->default(0);
-			$table->string('profile')->nullable();
 			$table->boolean('activo')->default(1);
 			$table->integer('role')->nullable();
 			$table->string('password');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Configuracion;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ConfiguracionController extends Controller
 {
@@ -99,7 +100,8 @@ class ConfiguracionController extends Controller
 
 		public function general(){
 			$data = Configuracion::first();
-			return view('configs.general',compact('data'));
+			$estados = DB::table('estados')->get();
+			return view('configs.general',compact('data','estados'));
 		}
 
 		public function contact(){

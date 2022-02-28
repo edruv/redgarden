@@ -22,10 +22,62 @@ Route::name('front.')->group(function(){
 	Route::get('contacto', 'FrontController@contacto')->name('contacto');
 	Route::get('productos/{product?}', 'FrontController@productos')->name('productos');
 	Route::get('producto/{product}', 'FrontController@details')->name('details');
+	Route::get('producto/det/var', 'FrontController@prodvar')->name('prodvar');
 	Route::get('servicios', 'FrontController@servicios')->name('servicios');
 	Route::get('servicio/{serv}', 'FrontController@servicioDet')->name('servicioDet');
 
 });
+
+
+	// rutas carrito
+	Route::prefix('cart')->name('cart.')->group(function(){
+		Route::post('addcart','CartController@store')->name('addcart');
+		Route::get('emptycart','CartController@emptycart')->name('emptycart');
+		Route::get('removecart','CartController@removecart')->name('removecart');
+		Route::post('getcart','CartController@getcart')->name('getcart');
+
+		Route::get('detalles','CartController@show')->name('show');
+		Route::get('confirmar-pedido','CartController@confirm')->name('confirm');
+		Route::post('pedido','PedidoController@store')->name('store');
+		// Route::post('/sendCoti','CartController@sendMail')->name('sendMail');
+
+		Route::post('direccion','DomicilioController@store')->name('storeDir');
+
+		Route::post('getdomicilio','CartController@getDomicilio')->name('getDomicilio');
+		Route::get('getPackages','CartController@getPackages')->name('getPackages');
+	});
+
+	// vistas del dashboard del usuario
+	Route::prefix('dashboard')->name('dash.')->group(function(){
+		Route::get('/','HomeController@index')->name('index');
+		Route::get('perfil','HomeController@perfil')->name('perfil');
+		Route::post('update','HomeController@updatePass')->name('updatePass');
+		Route::get('mi-perfil','HomeController@perfil')->name('perfil');
+
+		// Route::prefix('mi-red')->name('network.')->group(function(){
+		// 	Route::get('/','HomeController@mynetwork')->name('mynetwork');
+		// });
+
+		Route::prefix('mis-compras')->name('compras.')->group(function(){
+			Route::get('/','HomeController@compras')->name('index');
+			Route::get('detalle/{id}','HomeController@detalle')->name('detalle');
+		});
+
+		Route::name('profile.')->group(function(){
+			Route::post('store','DomicilioController@store')->name('store');
+			Route::post('delete','DomicilioController@destroy')->name('delete');
+		});
+
+		Route::get('orden/{uuid}','HomeController@orden')->name('orden');
+	});
+
+	Route::prefix('paypal')->name('paypal.')->group(function(){
+		Route::get('/pay/{uid}', 'PaymentController@payWithPayPal')->name('paypalpay');
+		Route::post('/status', 'PaymentController@payPalStatus')->name('paypalstatus');
+		Route::post('/ipn', 'PaymentController@payPalIpn')->name('paypalipn');
+		// Route::get('/paySub/{uid}', 'PaymentController@payWithPayPalSub')->name('paypalpay2');
+		// Route::get('/statusTwo', 'PaymentController@payPalStatusTwo')->name('paypalstatusSub');
+	});
 
 // rutas al admin
 Route::namespace("Admin")->prefix('admin')->group(function(){
@@ -258,7 +310,7 @@ Route::prefix('varios')->name('func.')->group(function(){
 	Route::post('addcart','CartController@addcart')->name('addcart');
 	Route::get('emptycart','CartController@emptycart')->name('emptycart');
 	Route::post('getcart','CartController@getcart')->name('getcart');
-	Route::get('updatecart','CartController@updatecart')->name('updatecart');
+	Route::get('updatecart','CartController@update')->name('updatecart');
 
 	Route::post('setLang','FuncGenController@setlang')->name('setlang');
 	Route::post('getPresents','FuncGenController@getPresents')->name('getPresents');

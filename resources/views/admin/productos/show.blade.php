@@ -158,7 +158,7 @@
 					</thead>
 					<tbody>
 						@foreach ($variantes as $var)
-						<tr>
+						<tr @if (empty($var->tipo_envio) || empty($var->peso) || empty($var->largo) || empty($var->ancho) || empty($var->alto) ) class="orange lighten-4" @endif>
 							<td>{{ $var->size->tamanio }}</td>
 							<td>{{ $var->presentacion->tamanio }}</td>
 							<td>{{ $var->precio }}</td>

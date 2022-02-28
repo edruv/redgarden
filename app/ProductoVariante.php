@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductoVariante extends Model
 {
 	public $timestamps = false;
-	
+
 	protected $fillable = [
 		'producto',
 		'size',
@@ -15,6 +15,11 @@ class ProductoVariante extends Model
 		'stock',
 		'precio',
 		'descuento',
+		'tipo_envio',
+		'peso',
+		'largo',
+		'ancho',
+		'alto',
 		'activo',
 		'orden',
 	];

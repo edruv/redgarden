@@ -9,7 +9,7 @@
 	<title> @yield('title') | Dashboard | {{ env('APP_NAME')}}</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{asset('css/bootstrap-4.min.css')}}">
 	<link rel="stylesheet" href="{{asset('css/mdb.min.css')}}">
 	<link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -34,7 +34,7 @@
 
 	<script type="text/javascript" src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
-	<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('js/bootstrap-4.js')}}"></script>
 	<script type="text/javascript" src="{{asset('js/general.js')}}"></script>
 	<script type="text/javascript" src="{{asset('js/mdb.min.js')}}"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

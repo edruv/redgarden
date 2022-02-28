@@ -34,8 +34,10 @@ class FrontController extends Controller
 		if (!Session::get('lang')) {
 			Session::put('lang', 'es');
 		}
-		// $this->envar = (Session::get('lang') == 'en' ) ? '_en' : '' ;
-		// View::share('envar', $this->envar);
+
+		if (!session()->has('cart_id')) {
+			session(['cart_id' => rand(00000,99999)]);
+		}
 
 	}
 	/**
@@ -44,6 +46,10 @@ class FrontController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 		public function index(){
+			if (!session()->has('cart_id')) {
+				session(['cart_id' => rand(00000,99999)]);
+			}
+			
 			$carrusel = Carrusel::orderBy('orden','asc')->get();
 
 			foreach ($carrusel as $carru) {
@@ -196,6 +202,16 @@ class FrontController extends Controller
 		// return response()->json($data);
 		return view('front.tienda_detalle', compact('product','variantes','prodRel'));
 		// return $product;
+	}
+
+	public function prodvar(Request $request) {
+
+		$data = ProductoVariante::find($request->variante);
+		if (!empty($data)) {
+			return response($data,200);
+		}else {
+			return response(401);
+		}
 	}
 
 	public function servicios() {

@@ -24,11 +24,14 @@ class CreatePedidosTable extends Migration
             $table->integer('cantidad');
             $table->float('importe',9,2);
             $table->float('iva',9,2);
+            $table->float('total',9,2);
             $table->float('envio',9,2)->nullable();;
             $table->string('comprobante')->nullable();
             $table->string('cupon')->nullable();
 						$table->boolean('cancelado')->nullable()->default(0);
             $table->unsignedBigInteger('usuario');
+						$table->text('data')->nullable();
+						$table->text('envia_resp')->nullable();
             $table->foreign('usuario')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();

@@ -11,6 +11,9 @@
 	</style>
 @endsection
 @section('content')
+	@php
+		$envar = (Session::get('lang') == 'es' ) ? '' : '_en' ;
+	@endphp
 <section>
 	<div class="bg-global">
 		<div class="col-12 p-3 text-center" style="background-color: black; color: white;">
@@ -19,7 +22,6 @@
 	</div>
 </section>
 	<div class="container my-5">
-
 		@if ( !count($carrito) )
 		<div class="col-12 center-y-x"  style="
 			min-height:55vh;
@@ -33,34 +35,27 @@
 		@else
 		<div class="col-md-9 mx-auto">
 			<form class="card" method="post">
-				<h3 class="card-header text-center"> Productos y detalles:</h3>
+				<h3 class="card-header text-center">@if ($envar) Products and details: @else  Productos y detalles: @endif</h3>
 				<div class="">
 					<table class="table table-sm">
 						<thead>
 							<tr>
 								<th width="50px"></th>
-								<th width="50px"></th>
-								<th>PRODUCTO</th>
-								<th width="50px">CANTIDAD</th>
-								<th class="text-center" width="100px">PRECIO</th>
-								<th width="100px">IMPORTE</th>
+								<th>@if ($envar) PRODUCT @else PRODUCTO @endif</th>
+								<th>@if ($envar) SIZE @else TAMAÑO @endif</th>
+								<th>@if ($envar) PRESENTATION @else PRESENTACION @endif</th>
+								<th width="50px">@if ($envar) QUANTITY @else CANTIDAD @endif</th>
+								<th class="text-center" width="100px">@if ($envar) P. Unit @else P. Unit @endif</th>
+								<th width="100px">@if ($envar) AMOUNT @else IMPORTE @endif</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($carrito as $item)
 									<tr class="">
 										<td class="text-center">
-											<button type="button" class="btn btn-sm btn-danger removecart " data-id="{{$item->id}}">
+											<button type="button" class="btn btn-sm btn-outline-danger removecart " data-id="{{$item->id}}" style="width: 3em;height: 2em;padding: 0;">
 												<i class="fas fa-trash"></i>
 											</button>
-										</td>
-										<td>
-
-											@if ($item->attributes['image'])
-												<img src="{{ asset('img/photos/productos/'.$item->attributes['image']) }}" alt="" class="img-fluid">
-											@else
-												<img src="{{ asset('img/design/logoFooter.png') }}" alt="logo.jpg" class="img-fluid">
-											@endif
 										</td>
 										{{-- <td>
 											<div class="uk-cover-container uk-border-circle" style="width:40px;height:40px;">
@@ -68,7 +63,13 @@
 											</div>
 										</td> --}}
 										<td class="text-left text-uppercase" >
-											<a href="{{route('front.details',$item->associatedModel['id'])}}" >{{ $item->attributes['producto']['nombre'] }} | {{$item->name}} </a>
+											<a href="{{route('front.details',$item->associatedModel['id'])}}" >{{ $item->attributes['producto']['nombre'.$envar] }}</a>
+										</td>
+										<td class="text-left text-uppercase" >
+											{{ $item->attributes['size']['tamanio'.$envar] }}
+										</td>
+										<td class="text-left text-uppercase" >
+											{{ $item->attributes['presentacion']['tamanio'.$envar] }}
 										</td>
 										<td class="text-right">
 											<input type="number" name="cantidad" value="{{$item->quantity}}" min="1" data-key="{{$item->id}}" class="cantidad form-control " tabindex="10">
@@ -85,17 +86,17 @@
 									</tr>
 								@endforeach
 								<tr>
-									<td colspan="5" class="text-right font-weight-bold">Subtotal:</td>
+									<td colspan="6" class="text-right font-weight-bold">Subtotal:</td>
 									<td>{{ number_format($cuentas['subtotal'],2) }}</td>
 								</tr>
 								<tr>
-									<td colspan="4"></td>
-									<td class="text-right font-weight-bold">IVA:</td>
+									<td colspan="5"></td>
+									<td class="text-right font-weight-bold">@if ($envar) TAX: @else IVA: @endif</td>
 									<td>{{ number_format($cuentas['iva'],2) }}</td>
 								</tr>
 								<tr>
-									<td colspan="4"></td>
-									<td class="text-right font-weight-bold">Total:</td>
+									<td colspan="5"></td>
+									<td class="text-right font-weight-bold">@if ($envar) Total: @else Total: @endif</td>
 									<td>{{ number_format($cuentas['total'],2) }}</td>
 								</tr>
 						</tbody>
@@ -105,9 +106,9 @@
 			<div class="my-3">
 				<div class="">
 					<div class="row">
-						<a href="{{ url()->route('front.productos') }}" class="col mx-auto col-md-3 btn btn-sm btn-default border"><i class="fas fa-fw fa-arrow-left"></i> Seguir comprando</a>
-						<a href="{{ route('cart.emptycart')}}" class="col mx-auto col-md-3 btn btn-sm btn-default border"><i class="fas fa-fw fa-trash"></i> Vaciar carrito</a>
-						<a href="{{ route('cart.confirm') }}" class="col mx-auto col-md-3 btn btn-sm btn-info ">Continuar <i class="fas fa-fw fa-arrow-right"></i></a>
+						<a href="{{ url()->route('front.productos') }}" class="col mx-auto col-md-3 btn btn-sm btn-default border"><i class="fas fa-fw fa-arrow-left"></i> @if ($envar) Continue shopping @else  Seguir comprando @endif</a>
+						<a href="{{ route('cart.emptycart')}}" class="col mx-auto col-md-3 btn btn-sm btn-default border"><i class="fas fa-fw fa-trash"></i> @if ($envar) Empty cart @else  Vaciar carrito @endif</a>
+						<a href="{{ route('cart.confirm') }}" class="col mx-auto col-md-3 btn btn-sm btn-info ">@if ($envar) Continue to @else Continuar @endif <i class="fas fa-fw fa-arrow-right"></i></a>
 					</div>
 				</div>
 			</div>

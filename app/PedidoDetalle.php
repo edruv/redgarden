@@ -8,7 +8,7 @@ class PedidoDetalle extends Model
 {
 
 	protected $fillable = [
-		'cantidad','precio','importe','pedido','producto'
+		'cantidad','precio','importe','total','pedido','producto'
 	];
 
 	public function pedido(){

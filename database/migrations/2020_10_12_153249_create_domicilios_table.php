@@ -24,6 +24,7 @@ class CreateDomiciliosTable extends Migration
 					$table->string('cp');
 					$table->string('municipio');
 					$table->string('estado');
+					$table->string('estado_code');
 					$table->string('pais')->nullable()->default('Mexico');
 					$table->boolean('favorito')->nullable();
 					$table->unsignedBigInteger('user');
