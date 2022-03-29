@@ -15,6 +15,9 @@
 						<button type="button" class="btn btn-outline-light btn-sm text-dark lang" data-lang="es">ES</button>
 					@endif
 				</div>
+				<div>
+					<a href="{{ route("cart.show") }}" class="btn btn-outline-light btn-sm text-dark"><i class="fas fa-shopping-cart"></i></a>
+				</div>
 			</div>
 			<div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel"
 				aria-hidden="true">
