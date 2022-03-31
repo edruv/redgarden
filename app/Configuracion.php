@@ -42,6 +42,7 @@ class Configuracion extends Model
 		"incremento",
 		"banco",
 		"mapa",
+		"cintillo",
 		"envia_key",
 		"envio_telefono",
 		"envio_email",

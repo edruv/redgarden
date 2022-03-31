@@ -61,9 +61,9 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show($categoria)
-    {
-
+    public function show($categoria) {
+			$categ = Categoria::find($categoria);
+			return view('admin.categorias.show',compact('categ'));
     }
 
     /**
@@ -72,9 +72,8 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
-    {
-        //
+    public function edit(Categoria $categ) {
+			return view('admin.categorias.edit',compact('categ'));
     }
 
     /**
@@ -84,9 +83,40 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
-    {
-        //
+    public function update(Request $request, Categoria $categ) {
+
+			$slug = $request->nombre_en ;
+
+			$categ->nombre = $request->nombre;
+			$categ->nombre_en = $request->nombre_en;
+			$categ->slug = Str::slug($slug);
+			$categ->save();
+
+			return view('admin.categorias.show',compact('categ'));
+    }
+
+		public function updateimg(Request $request, $categoria) {
+  		$product = Categoria::find($categoria);
+
+      if ($request->hasFile('portada')) {
+        $field = $request->type;
+  			$file = $request->file($field);
+  			$extension = $file->getClientOriginalExtension();
+  			$namefile = Str::random(30) . '.' . $extension;
+
+  			\Storage::disk('local')->put("/img/photos/categorias/" . $namefile, \File::get($file));
+
+  			if (!empty($product->$field)) {
+  				\Storage::disk('local')->delete("/img/photos/categorias/" . $product->$field);
+  			}
+
+  			$product->$field = $namefile;
+  		}
+
+  		$product->save();
+
+  		\Toastr::success('Guardado');
+  		return redirect()->route('categ.show', $product->id);
     }
 
     /**
@@ -95,8 +125,7 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
-    {
+    public function destroy(Request $request){
 			if (empty($request->categoria)) {
 				\Toastr::error('No se encontro la categoria, intente mas tarde');
 				return redirect()->back();
@@ -107,6 +136,7 @@ class CategoriaController extends Controller
 			if (Producto::where('categoria',$cat->id)->count()) {
 				\Toastr::error('No se puede eliminar una categoria con productos');
 				return redirect()->back();
+				// return redirect()->route('categ.index');
 			}
 
 			$cat->delete();

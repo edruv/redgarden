@@ -30,7 +30,7 @@
 					$hftservices = 'services';
 					$hftabout = 'company';
 					$hftcontact = 'contact';
-					$hftcitas = 'SCHEDULE YOUR APPOINTMENT';
+					$hftcitas = 'SCHEDULE YOUR APPOINTMENT WITH AN ADVISOR';
 				break;
 
 				default:
@@ -39,7 +39,7 @@
 					$hftservices = 'servicios';
 					$hftabout = 'empresa';
 					$hftcontact = 'contacto';
-					$hftcitas = 'AGENDA TU CITA';
+					$hftcitas = 'AGENDA TU CITA <br>CON UN ASESOR';
 				break;
 			}
 		@endphp

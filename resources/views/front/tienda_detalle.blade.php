@@ -51,7 +51,7 @@
 						<div class="mt-3">
 							{{-- <form action=""> --}}
 								<div class="row">
-									<div class="col-12 col-md">
+									<div class="col-12 mb-3">
 										{{-- <label class="form-label" for="size"> @if ($envar) STONE SIZE @else TAMAÑO DE PIEDRA @endif </label> --}}
 										<label class="form-label" for="size"> @if ($envar) STONE SIZE & PRESENTATION @else TAMAÑO DE PIEDRA & PRESENTACION @endif </label>
 										<select name="size" id="size" class="form-select btn btn-outline-dark" required>
@@ -69,7 +69,7 @@
 											<option value=""></option>
 										</select>
 									</div> --}}
-									<div class="col-12 col-md">
+									<div class="col-12 mb-3">
 										<label class="form-label" for=""> @if ($envar) QUANTITY @else CANTIDAD @endif </label>
 										<input type="number" name="cantidad" id="cantidad" class="form-control btn btn-outline-dark" max="">
 									</div>

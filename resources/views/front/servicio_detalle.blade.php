@@ -37,7 +37,7 @@
 		</div>
 	</section> --}}
 
-	<section style=" background: #006532; background: linear-gradient(180deg, #006532 40%, rgba(255,255,255,1) 40%);">
+	<section style=" background: url({{asset('img/design/menu_bg.png')}}); background: linear-gradient(180deg, #006532 40%, rgba(255,255,255,1) 40%);">
 
 		<h1 class="text-center text-uppercase py-4 text-white">@if ($envar) OUR SERVICES @else Nuestros servicios @endif </h1>
 

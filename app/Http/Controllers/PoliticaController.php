@@ -68,9 +68,14 @@ class PoliticaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
+			// return $request;
 			$politica = Politica::find($id);
 
-			$politica->descripcion = $request->descripcion;
+			if ($request->en) {
+				$politica->descripcion_en = $request->descripcion_en;
+			}else {
+				$politica->descripcion = $request->descripcion;
+			}
 			$politica->save();
 
 			\Toastr::success('Guardado');

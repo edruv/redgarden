@@ -26,6 +26,13 @@ Route::name('front.')->group(function(){
 	Route::get('servicios', 'FrontController@servicios')->name('servicios');
 	Route::get('servicio/{serv}', 'FrontController@servicioDet')->name('servicioDet');
 
+	Route::get('garantias','FrontController@garantias')->name('garantias');
+	Route::get('aviso-de-privacidad','FrontController@aviso')->name('aviso');
+	Route::get('metodos-de-pago','FrontController@pagos')->name('pagos');
+	Route::get('devoluciones','FrontController@devoluciones')->name('devoluciones');
+	Route::get('terminos-y-condiciones','FrontController@tyc')->name('tyc');
+	Route::get('politicas-de-envio','FrontController@pde')->name('pde');
+	Route::get('faq','FrontController@preguntas')->name('faq');
 });
 
 
@@ -267,8 +274,11 @@ Route::prefix('admin')->group(function(){
 		Route::get('/','CategoriaController@index')->name('index');
 		Route::post('/','CategoriaController@store')->name('store');
 		Route::get('/{id}','CategoriaController@show')->name('show');
-		Route::get('subcategoria/{id}','CategoriaController@sub')->name('sub');
-		Route::post('/delete','CategoriaController@destroy')->name('delete');
+		Route::get('edit/{categ}','CategoriaController@edit')->name('edit');
+		Route::post('/{categ}','CategoriaController@update')->name('update');
+		Route::post('up/{id}','CategoriaController@updateimg')->name('updateimg');
+		Route::post('cat/delete','CategoriaController@destroy')->name('delete');
+		// Route::get('subcategoria/{id}','CategoriaController@sub')->name('sub');
 	});
 
 	Route::prefix('novedades')->name('novedades.')->group(function () {

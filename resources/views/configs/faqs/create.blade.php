@@ -24,6 +24,15 @@
 						<label for="answer">Respuesta</label>
 						<textarea name="answer" id="answer" rows="10" class="form-control" style="resize:none;"></textarea>
 					</div>
+					<hr>
+					<div class="form-group">
+						<label for="question_en">Pregunta (EN)</label>
+						<input type="text" name="question_en" id="question_en" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="answer_en">Respuesta (EN)</label>
+						<textarea name="answer_en" id="answer_en" rows="10" class="form-control" style="resize:none;"></textarea>
+					</div>
 					<div class="form-group text-center">
 						<button type="submit" class="btn btn-primary">Guardar</button>
 					</div>

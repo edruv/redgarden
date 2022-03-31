@@ -12,7 +12,11 @@ class Politica extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-			'titulo','descripcion','archivo',	
+			'titulo',
+			'titulo_en',
+			'descripcion',
+			'descripcion_en',
+			'archivo',
 	];
 
 }

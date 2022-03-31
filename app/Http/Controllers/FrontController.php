@@ -49,7 +49,7 @@ class FrontController extends Controller
 			if (!session()->has('cart_id')) {
 				session(['cart_id' => rand(00000,99999)]);
 			}
-			
+
 			$carrusel = Carrusel::orderBy('orden','asc')->get();
 
 			foreach ($carrusel as $carru) {
@@ -262,6 +262,11 @@ class FrontController extends Controller
 
 	public function tyc(){
 		$politica = Politica::find(4);
+		return view('front.politicas',compact("politica"));
+	}
+
+	public function pde(){
+		$politica = Politica::find(6);
 		return view('front.politicas',compact("politica"));
 	}
 

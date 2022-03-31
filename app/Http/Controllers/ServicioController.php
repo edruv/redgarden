@@ -54,8 +54,8 @@ class ServicioController extends Controller
 
 			$servicio = new Servicio;
 
-			$servicio->nombre = strtolower($request->nombre);
-			$servicio->nombre_en = strtolower($request->nombre_en);
+			$servicio->nombre = $request->nombre;
+			$servicio->nombre_en = $request->nombre_en;
 			$servicio->descripcion = $request->descripcion;
 			$servicio->descripcion_en = $request->descripcion_en;
 

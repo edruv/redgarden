@@ -38,10 +38,14 @@ class FaqController extends Controller
     public function store(Request $request){
 			$validate = Validator::make($request->all(),[
 					'question' => 'required',
+					'question_en' => 'required',
 					'answer' => 'required',
+					'answer_en' => 'required',
 				],[],[
 					'question' => 'pregunta',
 					'answer' => 'respuesta',
+					'question_en' => 'pregunta (EN)',
+					'answer_en' => 'respuesta (EN)',
 				]);
 
 			if ($validate->fails()) {
@@ -51,7 +55,9 @@ class FaqController extends Controller
 			$faq = new Faq;
 
 			$faq->pregunta = $request->question;
+			$faq->pregunta_en = $request->question_en;
 			$faq->respuesta = $request->answer;
+			$faq->respuesta_en = $request->answer_en;
 
 			$faq->save();
 			\Toastr::success('Guardado');
@@ -97,10 +103,14 @@ class FaqController extends Controller
 
 			$validate = Validator::make($request->all(),[
 					'question' => 'required',
+					'question_en' => 'required',
 					'answer' => 'required',
+					'answer_en' => 'required',
 				],[],[
 					'question' => 'pregunta',
 					'answer' => 'respuesta',
+					'question_en' => 'pregunta (EN)',
+					'answer_en' => 'respuesta (EN)',
 				]);
 
 			if ($validate->fails()) {
@@ -114,7 +124,9 @@ class FaqController extends Controller
 			}
 
 			$faq->pregunta = $request->question;
+			$faq->pregunta_en = $request->question_en;
 			$faq->respuesta = $request->answer;
+			$faq->respuesta_en = $request->answer_en;
 
 			$faq->save();
 

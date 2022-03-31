@@ -46,6 +46,17 @@
 		<div class="col-12 col-md-4 p-2">
 			<div class=" h-100 card">
 				<div class="card-body">
+					<h5 class="card-title text-center">Cintillo</h5>
+					<div class="form-group">
+						<label for="cintillo">Texto</label>
+						<input type="text" class="form-control editarajax" id="cintillo" name="cintillo" data-id="{{$data->id}}" data-table="configuracion" data-campo="cintillo"  value="{{ $data->cintillo }}">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-4 p-2">
+			<div class=" h-100 card">
+				<div class="card-body">
 					<h5 class="card-title text-center">Cuenta Paypal</h5>
 					<div class="form-group">
 						<label for="paypalemail">Email</label>

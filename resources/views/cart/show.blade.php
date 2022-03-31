@@ -17,7 +17,7 @@
 <section>
 	<div class="bg-global">
 		<div class="col-12 p-3 text-center" style="background-color: black; color: white;">
-			<div class="d-inline" style="font-size:24px;color: white;">Mi Carrito</div>
+			<div class="d-inline" style="font-size:24px;color: white;">@if ($envar) My cart @else Mi Carrito @endif</div>
 		</div>
 	</div>
 </section>
@@ -30,7 +30,12 @@
 		    align-items: center;
 		    justify-content: center;">
 			<div class="col-12 alert alert-danger text-center" role="alert">
-				<b>El carro está vacío</b></div>
+				@if ($envar)
+					<b>The cart is empty</b>
+				@else
+					<b>El carrito está vacío</b>
+				@endif
+			</div>
 		</div>
 		@else
 		<div class="col-md-9 mx-auto">

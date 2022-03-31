@@ -20,7 +20,7 @@
 						<thead>
 							<th>Categoria</th>
 							<th>Categoria (EN)</th>
-							<th>Productos</th>
+							{{-- <th>Productos</th> --}}
 							<th class="text-right">Ops</th>
 						</thead>
 						<tbody class="sortable" data-table="Categoria">
@@ -28,10 +28,11 @@
 							<tr data-card="{{$cat->id}}">
 								<td>{{$cat->nombre}}</td>
 								<td>{{$cat->nombre_en}}</td>
-								<td>{{$cat->prods}}</td>
+								{{-- <td>{{$cat->prods}}</td> --}}
 								<td>
 									<div class="text-right">
 										<div class="btn-group btn-group-sm" role="group">
+											<a href="{{ route('categ.show',$cat->id) }}" class="btn btn-sm btn-primary m-0"><i class="fas fa-eye"></i></a>
 											<button type="button" class="btn btn-sm btn-danger m-0 @if ($cat->sub) disabled @endif" data-toggle="modal" data-target="#frameModalDel" data-id="{{$cat->id}}"><i class="fas fa-trash-alt"></i></button>
 										</div>
 									</div>

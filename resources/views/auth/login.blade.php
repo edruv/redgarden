@@ -1,5 +1,11 @@
 @extends('layouts.front')
+@section('title')
+	@php
+	$envar = (Session::get('lang') == 'es' ) ? '' : '_en' ;
+	@endphp
 
+	@if ($envar) Log in @else Iniciar Sesion @endif
+@endsection
 @section('content')
 <div class="container">
 	<div class="row justify-content-center py-5">
@@ -72,7 +78,7 @@
 				<div class="row no-gutters">
 					<div class="col-md-7">
 						<div class="card-body">
-							<h5 class="card-title text-center">{{ __('Iniciar Sesion') }}</h5>
+							<h5 class="card-title text-center">@if ($envar) Log in @else Iniciar Sesion @endif</h5>
 							<form method="POST" action="{{ route('login') }}">
 								@csrf
 								<div class="form-group">
@@ -102,11 +108,11 @@
 
 								<div class="form-group row mb-0 mt-3">
 									<div class="d-flex justify-content-between">
-										<button type="submit" class="btn btn-primary">
+										<button type="submit" class="btn btn-sm btn-primary">
 											{{ __('Entrar') }}
 										</button>
 										@if (Route::has('password.request'))
-										<a class="btn btn-link" href="{{ route('password.request') }}">
+										<a class="btn btn-sm btn-link" href="{{ route('password.request') }}">
 											{{ __('¿Olvidaste tu contraseña?') }}
 										</a>
 										@endif
@@ -114,7 +120,7 @@
 								</div>
 							</form>
 
-							<p class="card-text text-center">
+							<p class="card-text text-center pt-3">
 								<a href="{{ route('register') }}" class="btn btn-sm btn-primary">
 									{{ __('Regístrate aquí') }}
 								</a>

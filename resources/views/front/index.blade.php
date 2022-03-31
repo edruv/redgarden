@@ -65,36 +65,14 @@
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<div class="d-block w-100 bg-rg carousel-alert">
-						<div class="col-9 mx-auto py-3 text-center">
-							Lorem ipsum dolor sit
-							amet, consectetur adipisicing elit. Vero est dolorum amet, nisi facere a, tenetur culpa
-							repellat temporibus tempore!
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="d-block w-100 bg-rg carousel-alert">
-						<div class="col-9 mx-auto py-3 text-center">
-							Lorem ipsum dolor sit
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="d-block w-100 bg-rg carousel-alert">
-						<div class="col-9 mx-auto py-3 text-center">
-							Lorem ipsum dolor sit
+						<div class="py-3 text-center">
+							<marquee direction="right" class="">
+							 {{$config->cintillo}}
+						</marquee>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- <button class="carousel-control-prev" type="button" data-bs-target="#carousel-alerts" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carousel-alerts" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button> -->
 		</div>
 	</section>
 
@@ -126,13 +104,15 @@
 				</div>
 			</div>
 			<div class="col-12 col-md-4">
-				<div class="">
-					<p class="fs-2">@if ($envar) Our Commitment @else Nuestro Compromiso @endif </p>
+				<div class="text-center">
+					<div class="fs-2 mb-0">
+						@if ($envar) Our Commitment @else Nuestro Compromiso @endif
+						</div>
 					<div class="">
 						{!! $elements[0]->texto !!}
 					</div>
 				</div>
-				<div class="pt-5">
+				{{-- <div class="pt-5">
 						<div class="row">
 							<div class="col-3 text-center">
 								<img src="{{ asset('img/design/logo-jal.png') }}" alt="logo-jal.png" class="img-fluid w-75">
@@ -142,7 +122,7 @@
 								{!! $elements[1]->texto !!}
 							</div>
 						</div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</section>
@@ -253,16 +233,16 @@
 		//   interval: 0
 		// });
 		$('.owl-one').owlCarousel({
-				loop:true,
-				margin:10,
+				loop:false,
+				margin:30,
 				responsiveClass:true,
 				responsive:{
 						0:{
-								items:1,
+								items:2,
 								nav:true
 						},
 						600:{
-								items:3,
+								items:2,
 								nav:false
 						}
 				}
