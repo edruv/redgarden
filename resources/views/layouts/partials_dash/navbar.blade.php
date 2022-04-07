@@ -1,21 +1,21 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
 	<div class="container-fluid">
 
-		<a class="navbar-brand waves-effect d-none d-block d-sm-block d-md-block d-lg-block d-xl-none " href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+		<a class="navbar-brand waves-effect d-none d-block d-sm-block d-md-block d-lg-block d-xl-none " href="{{ route("dash.index") }}" target="_blank">
 			{{-- <strong class="blue-text">MDB</strong> --}}
 			<img src="{{asset('img/design/logo.png')}}" class="img-fluid" alt="">
 
 		</a>
 
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<div class="collapse navbar-collapse" id="navbarContent">
 
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item {{ (request()->is('dashboard')) ? 'active' : '' }}">
-					<a class="nav-link waves-effect" href="{{ route('dash.index') }}">Inicio
+					<a class="nav-link waves-effect" href="{{ route('front.index') }}">Inicio
 						<span class="sr-only">(current)</span>
 					</a>
 				</li>

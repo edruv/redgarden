@@ -23,7 +23,7 @@
 							<div class="carousel-inner">
 								@foreach ($product->gallery as $itemgal)
 									<div class="carousel-item @if ($loop->first) active @endif">
-										<img src="{{ asset('img/photos/productos/'.$itemgal->image)}}" class="d-block mx-auto" style="height:500px;" alt="{{$itemgal->image}}">
+										<img src="{{ asset('img/photos/productos/'.$itemgal->image)}}" class="d-block img-fluid mx-auto" style="height:500px;object-fit: cover;" alt="{{$itemgal->image}}">
 									</div>
 								@endforeach
 							</div>

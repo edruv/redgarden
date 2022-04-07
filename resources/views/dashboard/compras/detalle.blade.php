@@ -5,7 +5,7 @@
 
 @section('content')
 	<div class="row mb-4 px-2">
-		<a href="{{ route('dash.compras.index') }}" class="col col-md-2 btn btn-sm grey darken-2 text-white mr-auto"><i class="fa fa-reply"></i> Regresar</a>
+		<a href="{{ route('dash.compras.index') }}" class="col col-md-2 btn btn-sm grey darken-2 mr-auto"><i class="fa fa-reply"></i> Regresar</a>
 	</div>
 	@if (session('status'))
 	<div class="alert alert-success" role="alert">

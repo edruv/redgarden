@@ -24,7 +24,7 @@
 							@if ($serv->photo)
 								<img src="{{ asset('img/photos/servicios/'.$serv->photo) }}" class="card-img-top" alt="{{$serv->photo}}">
 							@else
-								<img src="{{ asset('img/design/social.png')}}" class="card-img-top text-center" alt="social.png">
+								<img src="{{ asset('img/design/social.png')}}" class="card-img-top text-center" alt="social.png" style="height: 15em;object-fit: cover;">
 							@endif
 						</a>
 						<div class="p-2 text-center">

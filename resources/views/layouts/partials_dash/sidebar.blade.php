@@ -1,10 +1,10 @@
 <div class="sidebar-fixed position-fixed" style="z-index:2000;">
 
-	<a class="logo-wrapper waves-effect">
+	<a href="{{ route("dash.index") }}" class="logo-wrapper waves-effect">
 		<img src="{{asset('img/design/logo.png')}}" class="img-fluid" alt="logo.png">
 	</a>
 
-	<div class="list-group list-group-flush">
+	<div class="list-group list-group-flush pt-4">
 		<a href="{{ route('dash.index') }}" class="list-group-item list-group-item-action {{ (request()->is('dashboard')) ? 'active' : '' }} waves-effect">
 			<i class="fa fa-home mr-3"></i>Inicio
 		</a>

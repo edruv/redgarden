@@ -5,14 +5,16 @@
 {{-- @section('jsLibExtras')@endsection --}}
 {{-- @section('styleExtras')@endsection --}}
 @section('content')
-
+	@php
+		$envar = (Session::get('lang') == 'es' ) ? '' : '_en' ;
+	@endphp
 	<div class="container my-4">
 		@if ( !count($carrito) )
 		<div class="alert alert-danger text-center" role="alert">
 			<b>El carro está vacío</b>
 		</div>
 		@else
-		<form class="" action="{{route('cart.store')}}" method="post">
+		<form id="allform" class="" action="{{route('cart.store')}}" method="post">
 			@csrf
 			<div class="my-5 container">
 					<div class="">
@@ -101,19 +103,27 @@
 							<table class="table table-sm">
 								<thead>
 									<tr>
-										<th>PRODUCTO</th>
-										<th width="50px">CANTIDAD</th>
-										<th class="text-center" width="100px">PRECIO</th>
-										<th width="100px">IMPORTE</th>
+										<th>@if ($envar) PRODUCT @else PRODUCTO @endif</th>
+										<th>@if ($envar) SIZE @else TAMAÑO @endif</th>
+										<th>@if ($envar) PRESENTATION @else PRESENTACION @endif</th>
+										<th width="50px">@if ($envar) QUANTITY @else CANTIDAD @endif</th>
+										<th class="text-center" width="100px">@if ($envar) P. Unit @else P. Unit @endif</th>
+										<th width="100px">@if ($envar) AMOUNT @else IMPORTE @endif</th>
 									</tr>
 								</thead>
 								<tbody>
 									@foreach ($carrito as $item)
 											<tr>
 												<td class="text-left text-uppercase" colspan="">
-													{{ $item->attributes['producto']['nombre'] }} | {{$item->name}}
+													{{ $item->attributes['producto']['nombre'.$envar] }}
 												</td>
-												<td class="text-center">
+												<td class="text-left text-uppercase" >
+													{{ $item->attributes['size']['tamanio'.$envar] }}
+												</td>
+												<td class="text-left text-uppercase" >
+													{{ $item->attributes['presentacion']['tamanio'.$envar] }}
+												</td>
+												<td class="text-right">
 													{{$item->quantity}}
 												</td>
 												<td class="text-center">
@@ -128,22 +138,22 @@
 											</tr>
 										@endforeach
 										<tr>
-											<td colspan="2"></td>
+											<td colspan="4"></td>
 											<td class="text-right font-weight-bold">Subtotal:</td>
 											<td>{{ number_format($cuentas['subtotal'],2) }}</td>
 										</tr>
 										<tr>
 											<td>Envio <span class="paque"></span> </td>
-											<td colspan="2"></td>
+											<td colspan="4"></td>
 											<td><span class="paqueprice"></span></td>
 										</tr>
 										<tr>
-											<td colspan="2"></td>
+											<td colspan="4"></td>
 											<td class="text-right font-weight-bold">IVA:</td>
 											<td>{{ number_format($cuentas['iva'],2) }}</td>
 										</tr>
 										<tr>
-											<td colspan="2"></td>
+											<td colspan="4"></td>
 											<td class="text-right font-weight-bold">Total:</td>
 											<td><span class="ntotal">{{ number_format($cuentas['total'],2) }}</span></td>
 										</tr>
@@ -319,7 +329,7 @@ $(document).ready(function() {
 					$( "#" + i ).append( document.createTextNode( " - " + val ) );
 					$('#rateSel').append('<div class="custom-control custom-radio">'+
 					'<input type="radio" id="cRadio'+i+'" data-price="'+resp.data[0].totalPrice+'" data-service="'+resp.data[0].service+'"  data-serDesc="'+resp.data[0].serviceDescription+'" name="paquete" class="custom-control-input">'+
-					'<label class="custom-control-label pakete" for="cRadio'+i+'">$'+
+					'<label class="custom-control-label pakete py-1" for="cRadio'+i+'"> $'+
 					resp.data[0].totalPrice +' - '+ resp.data[0].serviceDescription + ' [<span class="text-success">Dias de entrega: '+resp.data[0].deliveryEstimate +'</span>]'+
 					'</label>'+
 					'</div>');

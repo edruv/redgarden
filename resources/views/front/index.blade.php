@@ -4,7 +4,7 @@
 @section('cssExtras')
 	<link rel="stylesheet" href="{{asset('css/index.css')}}">
 	<link rel="stylesheet" href="{{ asset('vendor/owlCarousel2/assets/owl.carousel.min.css') }}">
-	{{-- <link rel="stylesheet" href="{{ asset('css/owlcarousel/owl.theme.default.min.css') }}"> --}}
+	<link rel="stylesheet" href="{{ asset('vendor/owlCarousel2/assets/owl.theme.default.css') }}">
 @endsection
 @section('styleExtras')
 	<style media="screen">
@@ -22,6 +22,22 @@
 			margin: auto 8% !important;
 		}
 
+.owl-dots{
+	text-align: center;
+}
+.owl-carousel button.owl-dot{
+	background: #ae3d52;
+    border: 1px solid #ae3d52;
+    margin: 1em 0.5em;
+    width: 20px;
+    height: 10px;
+    border-radius: 20px;
+}
+.owl-carousel button.owl-dot.active {
+    background: #006532;
+		border: 1px solid #006532;
+
+}
 	</style>
 @endsection
 @section('content')
@@ -80,23 +96,27 @@
 		<div class="row mx-auto pt-5">
 			<div class="col-12 col-md-8">
 				<div class="col-12 row">
-					<div class="col-12 col-md-6 text-center">
+					<div class="col-12 text-center">
 						<img src="img/design/logo.png" alt="" class="">
 					</div>
-					<div class="col-12 col-md-6 text-center">
+					{{-- <div class="col-12 col-md-6 text-center">
 						<img src="img/design/logo-2.png" alt="" class="">
-					</div>
+					</div> --}}
 				</div>
 				<div class="col-12">
 					<div class="owl-carousel owl-one">
 						@foreach ($servDesta as $serv)
-							<div class="">
+							<div class="item">
 								<a href="{{ route('front.servicioDet',$serv->id) }}">
-									<img src="{{ asset('img/photos/servicios/'.$serv->photo) }}" class="card-img-top" alt="{{$serv->photo}}">
+									@if ($serv->photo)
+										<img src="{{ asset('img/photos/servicios/'.$serv->photo) }}" class="card-img-top" alt="{{$serv->photo}}">
+									@else
+										<img src="{{ asset('img/design/social2.png')}}" class="card-img-top" alt="" style="height: 18em;object-fit: cover;">
+									@endif
 								</a>
 								<div class="card-body text-center">
 									{{-- <a href="{{ route('front.servicioDet',$serv->id) }}" class="card-title h4">{{ (Session::get('lang') == 'es') ? $serv->nombre : $serv->nombre}}</a> --}}
-									<a href="{{ route('front.servicioDet',$serv->id) }}" class="card-title h4">{{ $serv->{'nombre'.$envar} }}</a>
+									<a href="{{ route('front.servicioDet',$serv->id) }}" class="card-title text-capitalize h4">{{ $serv->{'nombre'.$envar} }}</a>
 								</div>
 							</div>
 						@endforeach
@@ -186,7 +206,7 @@
 		<div class="container-md pt-5 mx-auto">
 			<div class="owl-carousel owl-two">
 				@foreach ($desta as $dest)
-					<div class="">
+					<div class="item">
 						<div class="category mb-5 shadow-lg  bg-body rounded">
 							<div class="htcatthumb ">
 								<a href="{{ route('front.details',$dest->id) }}">
@@ -239,7 +259,7 @@
 				responsive:{
 						0:{
 								items:2,
-								nav:true
+								nav:false
 						},
 						600:{
 								items:2,
@@ -249,13 +269,13 @@
 		});
 
 		$('.owl-two').owlCarousel({
-				loop:true,
+				loop:false,
 				margin:20,
 				responsiveClass:true,
 				responsive:{
 						0:{
 								items:1,
-								nav:true
+								nav:false
 						},
 						600:{
 								items:4,

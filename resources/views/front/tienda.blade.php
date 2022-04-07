@@ -28,11 +28,15 @@
 			<img src="img/design/stone_r.png" alt="">
 		</div>
 
-		<div class="d-flex justify-content-evenly fw-bold">
+		<div class="d-sm-flex justify-content-evenly fw-bold">
 			@foreach ($cats as $cat)
-				<div class="">
+				<div class="text-center">
 					<a href="{{ route('front.productos',$cat->slug) }}">
-						<img src="{{ asset('img/design/producto-1.png')}}" class="card-img-top rounded-circle img-fluid" alt="" style="width:12em;height:12em">
+						@if (!empty($cat->portada))
+							<img src="{{ asset('img/photos/categorias/'.$cat->portada)}}" class="card-img-top rounded-circle img-fluid" alt="" style="width:12em;height:12em">
+						@else
+							<img src="{{ asset('img/design/social2.png')}}" class="card-img-top rounded-circle img-fluid" alt="" style="width:12em;height:12em">
+						@endif
 					</a>
 					<div class="card-body text-center">
 						<a href="{{ route('front.productos',$cat->slug) }}">
@@ -52,7 +56,7 @@
 		<div class="container">
 			<div class="row">
 				@foreach ($products as $prod)
-					<div class="col-6 col-md-3">
+					<div class="col-12 col-md-3">
 						<div class="category my-3 shadow-lg  bg-body rounded">
 							<div class="htcatthumb ">
 								<a href="{{ route('front.details',$prod->id) }}">

@@ -8,8 +8,8 @@
 
 @section('content')
 
-	<div class="col-12 mb-2 px-2">
-		<a href="{{ route('dash.index') }}" class="col col-md-2 btn btn-sm grey darken-2 text-white mr-auto"><i class="fa fa-reply"></i> Regresar</a>
+	<div class="col-12 mb-3 px-2">
+		<a href="{{ route('dash.index') }}" class="col col-md-2 btn btn-sm grey darken-2 mr-auto"><i class="fa fa-reply"></i> Regresar</a>
 	</div>
 
 	<div class="col-12 px-0 mx-auto">
@@ -47,27 +47,27 @@
 									<td class="text-center">
 										@switch($item->estatus)
 										@case(0)
-										<div class="alert alert-dark" role="alert">
+										<span class="badge badge-dark py-2">
 											Registrado
-										</div>
+										</span>
 										@break
 
 										@case(1)
-										<div class="alert alert-info" role="alert">
+										<span class="badge badge-info py-2">
 											Pagado
-										</div>
+										</span>
 										@break
 
 										@case(2)
-										<div class="alert alert-warning" role="alert">
+										<span class="badge badge-warning py-2">
 											Enviado
-										</div>
+										</span>
 										@break
 
 										@case(3)
-										<div class="alert alert-success" role="alert">
+										<span class="badge badge-success py-2">
 											Entregado
-										</div>
+										</span>
 										@break
 
 										@endswitch

@@ -114,7 +114,7 @@
 					<table>
 						<tr>
 							<td class="title">
-								<img src="https://proyectoswozial.com/rodarte2/img/design/logoFooter.png" style="width:100%; max-width:300px;">
+								<img src="https://jolly-wilson.74-208-19-230.plesk.page/img/design/logo.png" style="width:100%; max-width:300px;">
 								{{-- <img src="{{ asset('img/design/logo.png')}}" style="width:100%; max-width:300px;"> --}}
 								{{-- <img src="{{ url('img/design/logo.png')}}" style="width:100%; max-width:300px;"> --}}
 							</td>
