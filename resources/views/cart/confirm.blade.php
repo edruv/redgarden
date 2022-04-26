@@ -329,7 +329,7 @@ $(document).ready(function() {
 					$( "#" + i ).append( document.createTextNode( " - " + val ) );
 					$('#rateSel').append('<div class="custom-control custom-radio">'+
 					'<input type="radio" id="cRadio'+i+'" data-price="'+resp.data[0].totalPrice+'" data-service="'+resp.data[0].service+'"  data-serDesc="'+resp.data[0].serviceDescription+'" name="paquete" class="custom-control-input">'+
-					'<label class="custom-control-label pakete py-1" for="cRadio'+i+'"> $'+
+					'<label class="custom-control-label pakete py-1" for="cRadio'+i+'" style="cursor: pointer;"> $'+
 					resp.data[0].totalPrice +' - '+ resp.data[0].serviceDescription + ' [<span class="text-success">Dias de entrega: '+resp.data[0].deliveryEstimate +'</span>]'+
 					'</label>'+
 					'</div>');
