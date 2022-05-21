@@ -36,11 +36,11 @@
 
 					<div class="gallery">
 						<div class="gallery-container">
-							<img class="gallery-item gallery-item-1" src="{{ asset('img/design/servicio-1.png')}}" data-index="1">
-							<img class="gallery-item gallery-item-2" src="{{ asset('img/design/servicio-1.png')}}" data-index="2">
-							<img class="gallery-item gallery-item-3" src="{{ asset('img/design/servicio-1.png')}}" data-index="3">
-							<img class="gallery-item gallery-item-4" src="{{ asset('img/design/servicio-1.png')}}" data-index="4">
-							<img class="gallery-item gallery-item-5" src="{{ asset('img/design/servicio-1.png')}}" data-index="5">
+							<img class="gallery-item gallery-item-1" src="{{ asset('img/design/rocks.jpg')}}" data-index="1">
+							<img class="gallery-item gallery-item-2" src="{{ asset('img/design/rocks.jpg')}}" data-index="2">
+							<img class="gallery-item gallery-item-3" src="{{ asset('img/design/rocks.jpg')}}" data-index="3">
+							<img class="gallery-item gallery-item-4" src="{{ asset('img/design/rocks.jpg')}}" data-index="4">
+							<img class="gallery-item gallery-item-5" src="{{ asset('img/design/rocks.jpg')}}" data-index="5">
 						</div>
 						<div class="gallery-controls"></div>
 					</div>

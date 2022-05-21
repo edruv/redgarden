@@ -6,12 +6,16 @@
 				$fttyc = 'TERMS AND CONDITIONS';
 				$ftpde = 'SHIPPING POLICIES';
 				$ftmc = 'MY ACCOUNT';
+				$ftn1 = 'NAVIGATION';
+				$ftn2 = 'HELP';
 			break;
 			default:
 				$ftadp = 'AVISO DE PRIVACIDAD';
 				$fttyc = 'TÉRMINOS Y CONDICIONES';
 				$ftpde = 'POLÍTICAS DE ENVÍO';
 				$ftmc = 'MI CUENTA';
+				$ftn1 = 'Navegación';
+				$ftn2 = 'AYUDA';
 			break;
 		}
 	@endphp
@@ -26,7 +30,7 @@
 	<div class="container">
 		<div class="row mx-auto">
 			<div class="col-12 col-lg-4">
-				<div class="text-uppercase fw-bold"> Navegación</div>
+				<div class="text-uppercase fw-bold">{{$ftn1}}</div>
 				<hr class="" style="color: #006532; height: .4em; opacity: .8; width: 90%;">
 				<!-- lista sin estilo -->
 				<ul class="list-unstyled">
@@ -38,7 +42,7 @@
 			</div>
 
 			<div class="col-12 col-lg-4">
-				<div class="text-uppercase fw-bold"> Ayuda</div>
+				<div class="text-uppercase fw-bold"> {{$ftn2}}</div>
 				<hr class="" style="color: #006532; height: .4em; opacity: .8; width: 90%;">
 				<!-- lista sin estilo -->
 				<ul class="list-unstyled">

@@ -95,14 +95,14 @@
 	<section>
 		<div class="row mx-auto pt-5">
 			<div class="col-12 col-md-8">
-				<div class="col-12 row">
+				{{-- <div class="col-12 row">
 					<div class="col-12 text-center">
 						<img src="img/design/logo.png" alt="" class="">
 					</div>
-					{{-- <div class="col-12 col-md-6 text-center">
+					<div class="col-12 col-md-6 text-center">
 						<img src="img/design/logo-2.png" alt="" class="">
-					</div> --}}
-				</div>
+					</div>
+				</div> --}}
 				<div class="col-12">
 					<div class="owl-carousel owl-one">
 						@foreach ($servDesta as $serv)
@@ -125,9 +125,9 @@
 			</div>
 			<div class="col-12 col-md-4">
 				<div class="text-center">
-					<div class="fs-2 mb-0">
+					{{-- <div class="fs-2 mb-0">
 						@if ($envar) Our Commitment @else Nuestro Compromiso @endif
-						</div>
+					</div> --}}
 					<div class="">
 						{!! $elements[0]->texto !!}
 					</div>
@@ -171,7 +171,7 @@
 			</div>
 		</div>
 
-		<div class="row mx-auto">
+		<div class="row mx-auto pt-3">
 			<div class="col-12 col-lg-5 mx-auto">
 				<div class="mx-auto text-center">
 					<div class="fs-1 text-uppercase fw-bold">
