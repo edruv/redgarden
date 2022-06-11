@@ -59,8 +59,8 @@
 		</div>
 	</section>
 
-	<section>
-		<h2 class="text-center text-uppercase m-5 fw-bold" style="font-size:3em;">
+	<section class="pt-3">
+		<h2 class="text-center text-uppercase m-5 fw-bold" style="font-size:2.5em;">
 			@if ($envar) OUR MANIFESTO @else nuestro manifiesto @endif
 		</h2>
 

@@ -112,8 +112,7 @@ label {
 
  </div>
 
- <h2 class="m-5 text-center text-uppercase fw-bold"> @if ($envar) FIND US @else Encuentranos @endif </h2>
-
+ {{-- <h2 class="m-5 text-center text-uppercase fw-bold"> @if ($envar) FIND US @else Encuentranos @endif </h2>
 
  <div class="container">
 
@@ -148,7 +147,7 @@ label {
  			</div>
  		</div>
  	</div>
- </div>
+ </div> --}}
 
  </section>
 

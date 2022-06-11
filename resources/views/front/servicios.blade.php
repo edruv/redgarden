@@ -14,12 +14,12 @@
 
 	<section style=" background: #006532; background: linear-gradient(180deg, #006532 40%, rgba(255,255,255,1) 40%);">
 
-		<h1 class="text-center text-uppercase py-4 text-white">@if ($envar) OUR SERVICES @else Nuestros servicios @endif </h1>
+		<div class="text-center text-uppercase py-4 text-white h2">@if ($envar) OUR SERVICES @else Nuestros servicios @endif </div>
 
 		<div class="container">
 			<div class="row">
 				@foreach ($services as $serv)
-					<div class="col-12 col-md-4 pb-3">
+					<div class="col-12 col-md-4 pb-3 mx-auto">
 						<a href="{{ route('front.servicioDet',$serv->id) }}">
 							@if ($serv->photo)
 								<img src="{{ asset('img/photos/servicios/'.$serv->photo) }}" class="card-img-top" alt="{{$serv->photo}}">

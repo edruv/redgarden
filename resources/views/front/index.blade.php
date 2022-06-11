@@ -76,24 +76,26 @@
 			</button>
 		</div>
 	</section>
-	<section>
-		<div id="carousel-alerts" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<div class="d-block w-100 bg-rg carousel-alert">
-						<div class="py-3 text-center">
-							<marquee direction="right" class="">
-							 {{$config->cintillo}}
-						</marquee>
+	@if ($config->cintillo)
+		<section>
+			<div id="carousel-alerts" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<div class="d-block w-100 bg-rg carousel-alert">
+							<div class="py-3 text-center">
+								<marquee direction="right" class="">
+									{{$config->cintillo}}
+								</marquee>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+	@endif
 
 	<section>
-		<div class="row mx-auto pt-5">
+		<div class="row mx-auto" style="margin:5em auto;">
 			<div class="col-12 col-md-8">
 				{{-- <div class="col-12 row">
 					<div class="col-12 text-center">
@@ -152,7 +154,7 @@
 		<div class="row mx-auto">
 			<div class="col-12 col-md-6">
 				<div class="text-center">
-					<img class="rounded-circle p-2 img-fluid" src="{{ asset('img/photos/seccions/'. $elements[3]->imagen) }}" alt="">
+					<img class="rounded-circle p-2 img-fluid" src="{{ asset('img/photos/seccions/'. $elements[3]->imagen) }}" alt="{{$elements[3]->imagen}}" style="width:90%;">
 				</div>
 				<div class="text-center mb-5">
 					{{-- <img src="/recursos/images/home_15.png" alt=""> --}}
@@ -171,10 +173,10 @@
 			</div>
 		</div>
 
-		<div class="row mx-auto pt-3">
+		<div class="row mx-auto pt-5">
 			<div class="col-12 col-lg-5 mx-auto">
 				<div class="mx-auto text-center">
-					<div class="fs-1 text-uppercase fw-bold">
+					<div class="fs-2 text-uppercase fw-bold">
 						@if ($envar) STORE @else TIENDA @endif
 					</div>
 					<div class="">
@@ -193,7 +195,7 @@
 
 		<!-- Linea de separación con texto -->
 		<div style="background-color:#006532;color:#fff;">
-			<div class="p-2 fs-2 text-center text-uppercase fw-bold">
+			<div class="p-2 fs-3 text-center text-uppercase fw-bold">
 				@if ($envar) Newest products @else Lo más nuevo @endif
 			</div>
 		</div>
