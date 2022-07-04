@@ -12,7 +12,7 @@
 		<div class="row mx-auto">
 			<div class="col-12 col-lg-5 mx-auto">
 				<div class="mx-auto text-center">
-					<div class="fs-1 fw-bold mt-3">
+					<div class="fs-1 fw-bold mt-5">
 						@if ($envar) STORE @else TIENDA @endif
 					</div>
 					<div class="">

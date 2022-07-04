@@ -95,7 +95,7 @@
 	@endif
 
 	<section>
-		<div class="row mx-auto" style="margin:5em auto;">
+		<div class="row mx-auto" style="margin:7em auto;">
 			<div class="col-12 col-md-8">
 				{{-- <div class="col-12 row">
 					<div class="col-12 text-center">
@@ -150,9 +150,8 @@
 	</section>
 
 	<section class="fondotr">
-
 		<div class="row mx-auto">
-			<div class="col-12 col-md-6">
+			<div class="col-12 col-md-5 mx-auto">
 				<div class="text-center">
 					<img class="rounded-circle p-2 img-fluid" src="{{ asset('img/photos/seccions/'. $elements[3]->imagen) }}" alt="{{$elements[3]->imagen}}" style="width:90%;">
 				</div>
@@ -256,7 +255,7 @@
 		// });
 		$('.owl-one').owlCarousel({
 				loop:false,
-				margin:30,
+				margin:50,
 				responsiveClass:true,
 				responsive:{
 						0:{

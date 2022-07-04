@@ -14,7 +14,7 @@
 
 	<section style=" background: #006532; background: linear-gradient(180deg, #006532 40%, rgba(255,255,255,1) 40%);">
 
-		<div class="text-center text-uppercase py-4 text-white h2">@if ($envar) OUR SERVICES @else Nuestros servicios @endif </div>
+		<div class="text-center text-uppercase text-white h2" style="padding-top:2em;">@if ($envar) OUR SERVICES @else Nuestros servicios @endif </div>
 
 		<div class="container">
 			<div class="row">

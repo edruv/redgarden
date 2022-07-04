@@ -39,7 +39,7 @@
 
 	<section style=" background: url({{asset('img/design/menu_bg.png')}}); background: linear-gradient(180deg, #006532 40%, rgba(255,255,255,1) 40%);">
 
-		<h1 class="text-center text-uppercase py-4 text-white">@if ($envar) OUR SERVICES @else Nuestros servicios @endif </h1>
+		<div class="text-center text-uppercase py-4 text-white h1" style="padding-top:2em !important;">@if ($envar) OUR SERVICES @else Nuestros servicios @endif </div>
 
 		<div class="container">
 			<div class="card">

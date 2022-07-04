@@ -21,7 +21,7 @@
 				<i class="fas fa-bars"></i>
 			</button>
 			<a class="navbar-brand" href="{{ route('front.index') }}">
-				<img src="{{asset('img/design/logo.png')}}" alt="logo.png" class="img-fluid" style="height:4.5em;">
+				<img src="{{asset('img/design/logo.png')}}" alt="logo.png" class="img-fluid" style="height:5em;">
 			</a>
 			<div class="d-flex justify-content-evenly">
 				<div>

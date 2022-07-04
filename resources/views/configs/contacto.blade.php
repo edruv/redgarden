@@ -17,10 +17,10 @@
 						<label for="whatsapp"> Whatsapp </label>
 						<input type="text" class="form-control editarajax" id="whatsapp" name="whatsapp" data-id="{{$data->id}}" data-table="configuracion" data-campo="whatsapp"  value="{{ $data->whatsapp }}">
 					</div>
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label for="whatsapp2"> Whatsapp 2</label>
 						<input type="text" class="form-control editarajax" id="whatsapp2" name="whatsapp2" data-id="{{$data->id}}" data-table="configuracion" data-campo="whatsapp2"  value="{{ $data->whatsapp2 }}">
-					</div>
+					</div> --}}
 				</div>
 			</div>
 		</div>

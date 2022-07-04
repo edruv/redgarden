@@ -112,24 +112,35 @@ label {
 
  </div>
 
- {{-- <h2 class="m-5 text-center text-uppercase fw-bold"> @if ($envar) FIND US @else Encuentranos @endif </h2>
+ <h2 class="m-5 text-center text-uppercase fw-bold"> @if ($envar) FIND US @else Encuentranos @endif </h2>
 
  <div class="container">
 
  	<div class="row mx-auto">
  		<div class="col-12 col-md-4">
- 			<div class="text-uppercase text-center fw-bold"> G force</div>
+ 			{{-- <div class="text-uppercase text-center fw-bold"> G force</div> --}}
+ 			<div class="text-uppercase text-center fw-bold">RED GARDEN</div>
  			<hr class="" style="color: #fff; height: .2em; opacity: .9; width: 90%;">
  			<!-- lista sin estilo -->
  			<div class="row">
- 				<div class="col-12">
- 					Lorem ipsum dolor sit amet,<br>
- 					consectetur adipisicing elit. <br>
- 					Eveniet, harum.
+				<div class="col-12">
+ 					{!! nl2br($config->direccion) !!}
+					@if ($config->telefono)
+						<div>
+							Oficina:
+							<a href="tel:{{$config->telefono}}" style="color:#fff; text-decoration:none;">{{$config->telefono}}</a>
+						</div>
+					@endif
+					@if ($config->whatsapp)
+						<div>
+							Whatsapp:
+							<a href="tel:{{$config->whatsapp}}" style="color:#fff; text-decoration:none;">{{$config->whatsapp}}</a>
+						</div>
+					@endif
  				</div>
  			</div>
  		</div>
- 		<div class="col-12 col-md-8">
+ 		{{-- <div class="col-12 col-md-8">
  			<div class="text-uppercase text-center fw-bold"> red garden</div>
  			<hr class="" style="color: #fff; height: .2em; opacity: .9; width: 90%;">
  			<!-- lista sin estilo -->
@@ -145,19 +156,27 @@ label {
  					Eveniet, harum.
  				</div>
  			</div>
- 		</div>
+ 		</div> --}}
  	</div>
- </div> --}}
+ </div>
 
  </section>
 
  <!-- mapa -->
- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.672671489009!2d-103.39868998460146!3d20.64219480623701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae0ed241a9bb%3A0xbb4c3906c38265fd!2sWozial%20Marketing%20Lovers!5e0!3m2!1ses-419!2smx!4v1639351855265!5m2!1ses-419!2smx" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+ @if ($config->mapa)
+	 <div id="mapa">
+		 {!! $config->mapa !!}
+	 </div>
+ @endif
+ {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.672671489009!2d-103.39868998460146!3d20.64219480623701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae0ed241a9bb%3A0xbb4c3906c38265fd!2sWozial%20Marketing%20Lovers!5e0!3m2!1ses-419!2smx!4v1639351855265!5m2!1ses-419!2smx" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}}
 @endsection
 
 @section('jsLibExtras2')
 @endsection
 @section('jqueryExtra')
 	<script type="text/javascript">
+	$('#mapa').css('width','100%');
+	$('#mapa iframe').css('height','600');
 	</script>
 @endsection
